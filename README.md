@@ -11,6 +11,6 @@ Comprehensive and dockerized development VM based on Ubuntu. Be careful, this im
 - Gimp
 
 ## How to use
-1. Run `docker run -id -p 56:22 -p 8080-8085:8080-8085 --name ubuntu -e "user=dummy" -e "pw=dummyPW" alexanderkrause/ubuntu`
+1. Run `docker run -id -p 56:22 -p 8080-8085:8080-8085 --name ubuntu -e "user=dummy" -e "pw=dummyPW" alexanderkrause/dockerized-ubuntu`
 2. Download X2Go Client for your OS: https://wiki.x2go.org/doku.php/download:start
 3. Start X2Go Client. Use `localhost` as host, `56` as SSH port and `LXDE` as session type. Insert your self-chosen credentials as well.
