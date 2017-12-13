@@ -1,8 +1,8 @@
 FROM ubuntu:latest
 ARG DEBIAN_FRONTEND=noninteractive
 
-ENV user explorviz
-ENV pw explorviz
+ENV user
+ENV pw
 
 EXPOSE 22
 EXPOSE 8080-8085
@@ -79,5 +79,11 @@ apt-get -qq -y install xzdec
 RUN \ 
 apt-get -qq -y install inkscape && \
 apt-get -qq -y install gimp
+
+# install Sublime texteditor
+RUN \
+add-apt-repository ppa:webupd8team/sublime-text-3 && \
+apt-get update -qq -y && \
+apt-get -qq -y install sublime-text-installer
 
 CMD ["sh", "-c", "service ssh start; bash"]
