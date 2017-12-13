@@ -1,8 +1,8 @@
 FROM ubuntu:latest
 ARG DEBIAN_FRONTEND=noninteractive
 
-ENV user
-ENV pw
+ENV user user
+ENV pw password
 
 EXPOSE 22
 EXPOSE 8080-8085
@@ -26,10 +26,10 @@ apt-get autoclean -qq -y && \
 apt-get autoremove -qq -y
 
 # add user
-RUN \
-useradd -ms /bin/bash ${user} && \
-echo ${user}:${pw} | chpasswd && \
-usermod -aG sudo ${user}
+#RUN \
+#useradd -ms /bin/bash ${user} && \
+#echo ${user}:${pw} | chpasswd && \
+#usermod -aG sudo ${user}
 
 # update apt source list
 RUN \
@@ -64,7 +64,6 @@ RUN \
 mkdir /opt/eclipse && cd opt/eclipse && \
 wget -O eclipse.tar.gz -q http://www.mirrorservice.org/sites/download.eclipse.org/eclipseMirror/technology/epp/downloads/release/oxygen/1a/eclipse-dsl-oxygen-1a-linux-gtk-x86_64.tar.gz && \
 tar -xzf eclipse.tar.gz --strip 1 && \
-chown -R ${user} /opt/eclipse && \
 ln -s /opt/eclipse/eclipse /usr/local/bin
 
 # install texlive2017 and texstudio
@@ -86,4 +85,4 @@ add-apt-repository ppa:webupd8team/sublime-text-3 && \
 apt-get update -qq -y && \
 apt-get -qq -y install sublime-text-installer
 
-CMD ["sh", "-c", "service ssh start; bash"]
+CMD ["sh", "-c", "service ssh start; useradd -ms /bin/bash ${user}; echo ${user}:${pw} | chpasswd; usermod -aG sudo ${user}; chown -R ${user} /opt/eclipse; bash"]
