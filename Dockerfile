@@ -15,10 +15,9 @@ RUN \
 apt-get remove unity -qq -y && \
 apt-get dist-upgrade -qq -y
 
-# install lubuntu
+# install lubuntu-desktop environment
 RUN \
 apt-get install lubuntu-desktop -qq -y && \
-# apt-get dist-upgrade -qq -y && \
 apt-get autoclean -qq -y && \
 apt-get autoremove -qq -y
 
