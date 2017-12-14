@@ -1,9 +1,6 @@
 FROM ubuntu:latest
 ARG DEBIAN_FRONTEND=noninteractive
 
-ENV user user
-ENV pw password
-
 EXPOSE 22
 EXPOSE 8080-8085
 
@@ -24,12 +21,6 @@ apt-get install lubuntu-desktop -qq -y && \
 # apt-get dist-upgrade -qq -y && \
 apt-get autoclean -qq -y && \
 apt-get autoremove -qq -y
-
-# add user
-#RUN \
-#useradd -ms /bin/bash ${user} && \
-#echo ${user}:${pw} | chpasswd && \
-#usermod -aG sudo ${user}
 
 # update apt source list
 RUN \
@@ -85,4 +76,4 @@ add-apt-repository ppa:webupd8team/sublime-text-3 && \
 apt-get update -qq -y && \
 apt-get -qq -y install sublime-text-installer
 
-CMD ["sh", "-c", "service ssh start; useradd -ms /bin/bash ${user}; echo ${user}:${pw} | chpasswd; usermod -aG sudo ${user}; chown -R ${user} /opt/eclipse; bash"]
+CMD ["sh", "-c", "service ssh start; bash"]
