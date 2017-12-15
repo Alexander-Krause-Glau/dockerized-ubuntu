@@ -1,3 +1,5 @@
+![dockerhub](https://img.shields.io/docker/pulls/alexanderkrause/dockerized-ubuntu.svg)
+
 # dockerized-ubuntu
 Comprehensive and dockerized development VM based on Ubuntu. Be careful, this image is huge (up to 10 GB). Data is not saved in external volumes.
 
