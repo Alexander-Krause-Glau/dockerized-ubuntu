@@ -7,6 +7,7 @@ Comprehensive and dockerized development VM based on Ubuntu. Be careful, this im
 - Texstudio
 - Java 8 JDK
 - Eclipse Oxygen IDE for Java and DSL Developers
+- Sublime
 - Inkscape
 - Gimp
 
