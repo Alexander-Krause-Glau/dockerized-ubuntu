@@ -23,7 +23,7 @@ This image is supposed to be used with a [X2Go Client](https://wiki.x2go.org/dok
 2. Clone this repository
 
 3. Create your custom Dockerfile based on [this example](https://github.com/Alexander-Krause/dockerized-ubuntu/blob/master/Dockerfile)
-  * The exemplary Dockerfile results in a container allowing only SSH login. Therefore, put your public key and your public key renamed as *authorized_keys* in the ssh folder
+  * The exemplary Dockerfile results in a container allowing only SSH login. Therefore, put your public key renamed as *authorized_keys* in the ssh folder
 
 4. Build your custom image `docker build --build-arg user=dummy --build-arg pw=mypassword -t dockerized-ubuntu PATH/TO/DOCKERFILE/FOLDER`, e.g., `docker build --build-arg user=dummy --build-arg pw=mypassword -t dockerized-ubuntu .`
 
