@@ -5,7 +5,7 @@ Comprehensive and dockerized development image based on Ubuntu. Be careful, this
 
 This image is supposed to be used with a [X2Go Client](https://wiki.x2go.org/doku.php/download:start).
 
-## Includes tools
+## Included tools
 - Git
 - Wget
 - Vim
@@ -20,15 +20,20 @@ This image is supposed to be used with a [X2Go Client](https://wiki.x2go.org/dok
 ## How to use
 1. Pull the base image first `docker pull alexanderkrause/dockerized-ubuntu`
 
-2. Create your custom Dockerfile based on [this example](https://github.com/Alexander-Krause/dockerized-ubuntu/blob/master/Dockerfile)
+2. Clone this repository
 
-3. Build your custom image `docker build --build-arg user=dummy --build-arg pw=mypassword -t dockerized-ubuntu PATH/TO/DOCKERFILE/FOLDER`, e.g., `docker build --build-arg user=dummy --build-arg pw=mypassword -t dockerized-ubuntu .`
+3. Create your custom Dockerfile based on [this example](https://github.com/Alexander-Krause/dockerized-ubuntu/blob/master/Dockerfile)
+  * The exemplary Dockerfile results in a container allowing only SSH login. Therefore, put your public key and your public key renamed as *authorized_keys* in the ssh folder
 
-4. Create and run your container (you can additionally map a port range, e.g., `-p 8080-8085:8080-8085`): `docker run -id -p 56:22 dockerized-ubuntu`
+4. Build your custom image `docker build --build-arg user=dummy --build-arg pw=mypassword -t dockerized-ubuntu PATH/TO/DOCKERFILE/FOLDER`, e.g., `docker build --build-arg user=dummy --build-arg pw=mypassword -t dockerized-ubuntu .`
 
-5. Download X2Go Client for your OS: https://wiki.x2go.org/doku.php/download:start
+5. Create and run your container (you can additionally map a port range, e.g., `-p 8080-8085:8080-8085`): `docker run -id -p 56:22 dockerized-ubuntu`
 
-6. Start X2Go Client. Use `localhost` as host, `56` as SSH port and `LXDE` as session type. Insert your self-chosen credentials as well and connect.
+6. Connect to the container via SSH and agent forwarding, i.e., `ssh -A dummy@localhost`. Keep this connection open
+
+6. Download [X2Go Client](https://wiki.x2go.org/doku.php/download:start) for your OS
+
+7. Start X2Go Client. Use `localhost` as host, `56` as SSH port and `LXDE` as session type. Insert your self-chosen credentials as well and connect.
 
 ## Regarding SSH Security
-At the moment, I am looking for the best way to use private keys in docker containers. Ultimately, I want to use a SSH agent forwarding. This does already work with the "-A" flag, e.g., `ssh -A dummy@localhost`, but X2Go (with the respective [workaround](https://wiki.x2go.org/doku.php/doc:howto:ssh-agent-workaround)) won't notice open SSH connections. Additionally, there is no valid and multi-OS-enabled way to inject a SSH agent into a docker container.
+I don't want to store my private keys in docker containers. Therefore, this image uses SSH agent forwarding instead of docker volume bindings or copying the file. Unfortunately, there is a bug in X2Go, thus a workaround is needed (contained in x2go folder and used by the exemplary [Dockerfile](https://github.com/Alexander-Krause/dockerized-ubuntu/blob/master/Dockerfile)). *Step 6* enables the workaround.

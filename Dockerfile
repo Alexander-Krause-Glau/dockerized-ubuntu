@@ -10,7 +10,11 @@ useradd -ms /bin/bash ${user} && \
 echo ${user}:${pw} | chpasswd && \
 usermod -aG sudo ${user}
 
-# copy SSH key
+# workaround for SSH agent forwarding in X2Go
+ADD x2go/workaround.bash.bashrc /tmp/workaround.bash.bashrc
+RUN cat /tmp/workaround.bash.bashrc >> /etc/bash.bashrc
+
+# copy public SSH key
 COPY ssh/* /home/${user}/.ssh/
 
 # set correct ssh permission
