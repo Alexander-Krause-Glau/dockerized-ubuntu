@@ -16,8 +16,6 @@ This image is supposed to be used with a [X2Go Client](https://wiki.x2go.org/dok
 - Sublime
 - Inkscape
 - Gimp
-- Node.js
-- Ember.js
 
 ## How to use
 1. Pull the base image first `docker pull alexanderkrause/dockerized-ubuntu`
