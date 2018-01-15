@@ -6,6 +6,7 @@ Comprehensive and dockerized development image based on Ubuntu. Be careful, this
 This image is supposed to be used with a [X2Go Client](https://wiki.x2go.org/doku.php/download:start).
 
 ## Included tools and technologies
+- lxde desktop
 - Git
 - Wget
 - Vim
