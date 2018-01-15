@@ -1,4 +1,4 @@
-![dockerhub](https://img.shields.io/docker/pulls/alexanderkrause/dockerized-ubuntu.svg)
+[![](https://img.shields.io/docker/pulls/alexanderkrause/dockerized-ubuntu.svg)](https://hub.docker.com/r/alexanderkrause/dockerized-ubuntu/ "Click to view the image on Docker Hub")
 
 # dockerized-ubuntu
 Comprehensive and dockerized development image based on Ubuntu. Be careful, this image is huge (up to 10 GB). Data is not saved in external volumes.
