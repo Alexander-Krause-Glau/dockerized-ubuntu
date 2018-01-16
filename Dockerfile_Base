@@ -21,16 +21,14 @@ apt-get install lubuntu-desktop -qq -y && \
 apt-get autoclean -qq -y && \
 apt-get autoremove -qq -y
 
-# update apt source list
+# update apt source list and package list
 RUN \
 echo "deb http://ppa.launchpad.net/x2go/stable/ubuntu xenial main" >> /etc/apt/sources.list && \
-echo "deb-src http://ppa.launchpad.net/x2go/stable/ubuntu xenial main" >> /etc/apt/sources.list
-
-# Update package list
-RUN \
+echo "deb-src http://ppa.launchpad.net/x2go/stable/ubuntu xenial main" >> /etc/apt/sources.list && \
 add-apt-repository ppa:x2go/stable && \
+add-apt-repository ppa:jonathonf/texlive-2017 && \
+add-apt-repository ppa:webupd8team/sublime-text-3 && \
 apt-get update -qq -y
-
 
 # install x2go server
 RUN \
@@ -58,8 +56,6 @@ ln -s /opt/eclipse/eclipse /usr/local/bin
 
 # install texlive2017 and texstudio
 RUN \
-add-apt-repository ppa:jonathonf/texlive-2017 && \
-apt-get update -qq -y && \
 apt-get -qq -y install texlive-full && \
 apt-get -qq -y install texstudio && \
 apt-get -qq -y install xzdec
@@ -71,8 +67,6 @@ apt-get -qq -y install gimp
 
 # install Sublime texteditor
 RUN \
-add-apt-repository ppa:webupd8team/sublime-text-3 && \
-apt-get update -qq -y && \
 apt-get -qq -y install sublime-text-installer
 
 CMD ["sh", "-c", "service ssh start; bash"]
